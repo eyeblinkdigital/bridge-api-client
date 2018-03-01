@@ -14,7 +14,7 @@ Installation:
 
 Basic setup steps::
 
-    $ pip install https://github.com/eyeblinkdigital/bridge-api-client/
+    $ pip install git+https://github.com/eyeblinkdigital/bridge-api-client/
 
 Credits
 ---------
