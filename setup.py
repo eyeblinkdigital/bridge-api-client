@@ -14,7 +14,7 @@ setup(
     name='bridge-api-client',
     version='0.1.0',
     packages=find_packages(),
-    # include_package_data=True,
+    include_package_data=True,
     description='A python client app to use Bridge API.',
     long_description=readme + '\n\n' + history,
     url='https://github.com/eyeblinkdigital/bridge-api-client',
