@@ -50,7 +50,7 @@ class Client(object):
         params.update(data)
         try:
             params_data = urlencode(params)
-        except Exception, e:
+        except Exception as e:
             raise e
         response = getattr(requests, method)(
             url,
