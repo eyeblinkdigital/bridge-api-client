@@ -1,9 +1,12 @@
 import requests, json
-from urlparse import urljoin
 from urllib import urlencode
 
 from bridge_api.version import __version__
 
+try:
+    import urlparse  # Python 2.x
+except ImportError:
+    import urllib.parse as urlparse
 
 DEFAULT_TIMEOUT = 60
 DEFAULT_LIMIT = 100
@@ -81,7 +84,7 @@ class Client(object):
 
         '''
 
-        url = urljoin(self.api_root, path)
+        url = urlparse.urljoin(self.api_root, path)
         return self._http_request(url, 'get', data)
 
     def post(self, path, data):
@@ -90,7 +93,7 @@ class Client(object):
 
         '''
 
-        url = urljoin(self.api_root, path)
+        url = urlparse.urljoin(self.api_root, path)
         return self._http_request(url, 'post', data)
 
     def put(self, path, data):
@@ -99,7 +102,7 @@ class Client(object):
 
         '''
 
-        url = urljoin(self.api_root, path)
+        url = urlparse.urljoin(self.api_root, path)
         return self._http_request(url, 'put', data)
 
     def delete(self, path, data):
@@ -108,7 +111,7 @@ class Client(object):
 
         '''
 
-        url = urljoin(self.api_root, path)
+        url = urlparse.urljoin(self.api_root, path)
         return self._http_request(url, 'delete', data)
 
 
