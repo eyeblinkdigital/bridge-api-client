@@ -1,12 +1,17 @@
 import requests, json
-from urllib import urlencode
+
+try:
+    from urllib import urlencode
+except ImportError:
+    from urllib.parse import urlencode
+
+try:
+    import urlparse
+except ImportError:
+    import urllib.parse as urlparse
 
 from bridge_api.version import __version__
 
-try:
-    import urlparse  # Python 2.x
-except ImportError:
-    import urllib.parse as urlparse
 
 DEFAULT_TIMEOUT = 60
 DEFAULT_LIMIT = 100
