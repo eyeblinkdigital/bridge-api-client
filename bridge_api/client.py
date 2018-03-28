@@ -249,7 +249,7 @@ class Items(API):
         '''
 
         data = {
-            'bank_id': bank_id, 'access_token': access_token,
+            'bank_id': bank_id, 'access_token_query': access_token,
             'redirect_url': redirect_url,
         }
         return self.client.post('/v2/items/connect', data)
