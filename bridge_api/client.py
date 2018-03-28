@@ -56,6 +56,8 @@ class Client(object):
             'client_id': self.client_id,
             'client_secret': self.client_secret,
         }
+        if data.get('access_token_query', None):
+            params.update({'access_token': data.pop('access_token_query')})
         params.update(data)
         try:
             params_data = urlencode(params)
