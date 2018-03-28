@@ -35,6 +35,7 @@ class Client(object):
 
         self.Users = Users(self)
         self.Banks = Banks(self)
+        self.Items = Items(self)
         self.Transactions = Transactions(self)
 
     def _http_request(self, url, method, data, timeout=DEFAULT_TIMEOUT):
@@ -231,6 +232,79 @@ class Banks(API):
         '''
 
         return self.client.get('/v2/banks/%s'%id, {})
+
+
+class Items(API):
+    '''
+    Items endpoints.
+
+    '''
+
+    def connect(self, bank_id, access_token, redirect_url=None):
+        '''
+        Connect an Item
+
+        '''
+
+        data = {
+            'bank_id': bank_id, 'access_token': access_token,
+            'redirect_url': redirect_url,
+        }
+        return self.client.post('/v2/items/connect', data)
+
+    def list(self, access_token):
+        '''
+        Items list
+
+        '''
+
+        data = {'limit': DEFAULT_LIMIT, 'access_token': access_token}
+        return self.client.get('/v2/items', data)
+
+    def retrieve(self, uuid, access_token):
+        '''
+        Retrieve an Item
+
+        '''
+
+        data = {'access_token':access_token}
+        return self.client.get('/v2/items/%s'%uuid, data)
+
+    def status(self, uuid, access_token):
+        '''
+        Status of an Item
+
+        '''
+
+        data = {'access_token': access_token}
+        return self.client.get('/v2/items/%s/status'%uuid, data)
+
+    def refresh(self, uuid, access_token):
+        '''
+        Refresh an Item
+
+        '''
+
+        data = {'access_token': access_token}
+        return self.client.post('/v2/items/%s/refresh'%uuid, data)
+
+    def refresh_status(self, uuid, access_token):
+        '''
+        Refresh Status of an Item
+
+        '''
+
+        data = {'access_token': access_token}
+        return self.client.get('/v2/items/%s/refresh'%uuid, data)
+
+    def delete(self, uuid, access_token):
+        '''
+        Delete an Item
+
+        '''
+
+        data = {'access_token': access_token}
+        return self.client.delete('/v2/items/%s'%uuid, data)
 
 
 class Accounts(API):
