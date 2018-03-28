@@ -252,7 +252,7 @@ class Items(API):
             'bank_id': bank_id, 'access_token_query': access_token,
             'redirect_url': redirect_url,
         }
-        return self.client.post('/v2/items/connect', data)
+        return self.client.get('/v2/items/connect', data)
 
     def list(self, access_token):
         '''
